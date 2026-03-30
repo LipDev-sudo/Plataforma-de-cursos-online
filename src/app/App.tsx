@@ -3,6 +3,7 @@ import { Hero } from "./components/Hero";
 import { FeaturedCourses } from "./components/FeaturedCourses";
 import { Benefits } from "./components/Benefits";
 import { Categories } from "./components/Categories";
+import { Testimonials } from "./components/Testimonials";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <FeaturedCourses />
       <Benefits />
       <Categories />
+      <Testimonials />
       <Footer />
     </div>
   );

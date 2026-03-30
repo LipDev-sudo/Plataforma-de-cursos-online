@@ -1,10 +1,10 @@
 import { GraduationCap } from "lucide-react";
 
 const footerLinks = {
-  Plataforma: ["Sobre nós", "Carreiras", "Blog", "Parceiros"],
-  Cursos: ["Programação", "Design", "Marketing", "Negócios"],
+  Plataforma: ["Sobre nos", "Carreiras", "Blog", "Parceiros"],
+  Cursos: ["Programacao", "Design", "Marketing", "Negocios"],
   Suporte: ["Central de Ajuda", "FAQ", "Contato", "Comunidade"],
-  Legal: ["Termos de Uso", "Privacidade", "Cookies", "Licenças"],
+  Legal: ["Termos de Uso", "Privacidade", "Cookies", "Licencas"],
 };
 
 const socialIcons = [
@@ -16,17 +16,17 @@ const socialIcons = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f0d1a] text-white">
+    <footer style={{ background: "var(--gradient-dark)" }} className="text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-6 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#6c3ce0] to-[#4f46e5] flex items-center justify-center">
+            <a href="#" className="flex items-center gap-2 mb-4 group">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#3B82F6] flex items-center justify-center shadow-lg shadow-[#7C3AED]/25 group-hover:shadow-[#7C3AED]/40 transition-shadow duration-300">
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-[1.15rem] tracking-tight" style={{ fontWeight: 700 }}>
-                Skill<span className="text-[#a78bfa]">Flow</span>
+              <span className="text-[1.15rem] tracking-tight font-bold">
+                Skill<span className="bg-gradient-to-r from-[#A78BFA] to-[#60A5FA] bg-clip-text text-transparent">Flow</span>
               </span>
             </a>
             <p className="text-[0.85rem] text-gray-400 leading-relaxed mb-6 max-w-xs">
@@ -37,10 +37,10 @@ export function Footer() {
                 <a
                   key={social.name}
                   href="#"
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#6c3ce0] flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-gradient-to-br hover:from-[#7C3AED] hover:to-[#3B82F6] flex items-center justify-center transition-all duration-300 group/icon hover:shadow-lg hover:shadow-[#7C3AED]/20"
                   aria-label={social.name}
                 >
-                  <svg className="w-4 h-4 fill-current text-gray-400 hover:text-white" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 fill-current text-gray-400 group-hover/icon:text-white transition-colors duration-300" viewBox="0 0 24 24">
                     <path d={social.path} />
                   </svg>
                 </a>
@@ -51,7 +51,7 @@ export function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-[0.85rem] text-white mb-4 uppercase tracking-wider" style={{ fontWeight: 600 }}>
+              <h4 className="text-[0.85rem] text-white mb-4 uppercase tracking-wider font-semibold">
                 {title}
               </h4>
               <ul className="space-y-2.5">
@@ -59,7 +59,7 @@ export function Footer() {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-[0.85rem] text-gray-400 hover:text-white transition-colors"
+                      className="text-[0.85rem] text-gray-400 hover:text-[#A78BFA] transition-colors duration-300"
                     >
                       {link}
                     </a>
@@ -69,20 +69,40 @@ export function Footer() {
             </div>
           ))}
         </div>
+
+        {/* Newsletter section */}
+        <div className="mt-12 pt-10 border-t border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h4 className="text-white font-semibold mb-1">Fique por dentro das novidades</h4>
+              <p className="text-gray-400 text-[0.85rem]">Receba dicas e ofertas exclusivas no seu email.</p>
+            </div>
+            <div className="flex gap-2 w-full md:w-auto">
+              <input
+                type="email"
+                placeholder="Seu melhor email"
+                className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:bg-white/8 transition-all duration-300 w-full md:w-64"
+              />
+              <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#3B82F6] text-white text-sm font-semibold hover:shadow-lg hover:shadow-[#7C3AED]/30 transition-all duration-300 cursor-pointer whitespace-nowrap">
+                Inscrever
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Bottom */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[0.8rem] text-gray-500">
-            © 2026 SkillFlow. Todos os direitos reservados.
+            &copy; 2026 SkillFlow. Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-[0.8rem] text-gray-500 hover:text-gray-300 transition-colors">
+            <a href="#" className="text-[0.8rem] text-gray-500 hover:text-[#A78BFA] transition-colors duration-300">
               Termos de Uso
             </a>
-            <a href="#" className="text-[0.8rem] text-gray-500 hover:text-gray-300 transition-colors">
-              Política de Privacidade
+            <a href="#" className="text-[0.8rem] text-gray-500 hover:text-[#A78BFA] transition-colors duration-300">
+              Politica de Privacidade
             </a>
           </div>
         </div>
