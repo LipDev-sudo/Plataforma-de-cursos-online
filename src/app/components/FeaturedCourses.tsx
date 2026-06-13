@@ -121,7 +121,7 @@ function TagBadge({ tag }: { tag: string }) {
 
 export function FeaturedCourses() {
   return (
-    <section className="py-20 bg-[#FAFAFF]">
+    <section id="cursos" className="scroll-mt-24 py-20 bg-[#FAFAFF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-14">

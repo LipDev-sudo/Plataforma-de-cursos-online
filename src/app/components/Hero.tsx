@@ -2,6 +2,14 @@ import { ArrowRight, Play, Sparkles, BookOpen, Trophy, Search } from "lucide-rea
 import { motion } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 
+const courseSuggestions = [
+  "React para Iniciantes",
+  "Desenvolvimento Web Completo",
+  "JavaScript Avancado",
+  "UI/UX Design Masterclass",
+  "Python para Backend",
+];
+
 function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -38,6 +46,13 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
+  const filteredSuggestions = courseSuggestions.filter((course) =>
+    course.toLowerCase().includes(searchQuery.trim().toLowerCase())
+  );
+
+  const goToCourses = () => {
+    document.getElementById("cursos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section className="relative overflow-hidden min-h-[92vh] flex items-center" style={{ background: "var(--gradient-hero)" }}>
@@ -91,7 +106,11 @@ export function Hero() {
             </p>
 
             {/* Search bar */}
-            <motion.div
+            <motion.form
+              onSubmit={(event) => {
+                event.preventDefault();
+                goToCourses();
+              }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -106,14 +125,43 @@ export function Hero() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-32 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15 text-white placeholder-white/40 focus:outline-none focus:border-white/30 focus:bg-white/15 transition-all duration-300"
                 />
-                <button className="absolute right-2 px-5 py-2.5 rounded-xl bg-white text-[#7C3AED] font-bold text-sm hover:shadow-lg hover:shadow-white/20 transition-all duration-300 cursor-pointer">
+                <button
+                  type="submit"
+                  className="absolute right-2 px-5 py-2.5 rounded-xl bg-white text-[#7C3AED] font-bold text-sm hover:shadow-lg hover:shadow-white/20 transition-all duration-300 cursor-pointer"
+                >
                   Buscar
                 </button>
               </div>
-            </motion.div>
+
+              {searchQuery.trim().length > 0 && (
+                <div className="absolute z-20 mt-3 w-full rounded-2xl border border-white/15 bg-[#15112b]/95 p-2 shadow-2xl shadow-black/30 backdrop-blur-xl">
+                  {filteredSuggestions.length > 0 ? (
+                    filteredSuggestions.slice(0, 4).map((course) => (
+                      <button
+                        key={course}
+                        type="button"
+                        onClick={() => {
+                          setSearchQuery(course);
+                          goToCourses();
+                        }}
+                        className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        <span>{course}</span>
+                        <ArrowRight className="h-4 w-4 text-[#38BDF8]" />
+                      </button>
+                    ))
+                  ) : (
+                    <p className="px-4 py-3 text-sm text-white/45">
+                      Nenhum curso encontrado. Veja todos os cursos em destaque.
+                    </p>
+                  )}
+                </div>
+              )}
+            </motion.form>
 
             <div className="flex flex-wrap gap-4 mb-12">
               <motion.button
+                onClick={goToCourses}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-white text-[#7C3AED] font-bold text-base hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 cursor-pointer"
