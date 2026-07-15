@@ -1,67 +1,95 @@
-# Plataforma de Cursos Online
+# SkillFlow - Plataforma de Cursos Demo
 
-Sistema web para venda e apresentacao de cursos online, com vitrine moderna, catalogo organizado e foco em conversao.
+Protótipo interativo de uma plataforma LMS, criado para demonstrar uma jornada de estudo sem depender de cadastro, pagamentos ou credenciais externas.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-00D4FF?style=for-the-badge)](https://plataforma-de-cursos-online-tau.vercel.app/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-LipDev.BR-BEF264?style=for-the-badge)](https://lipdev.vercel.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-LipDev--sudo-181717?style=for-the-badge&logo=github)](https://github.com/LipDev-sudo)
+- **Aplicação publicada:** https://plataforma-de-cursos-online-tau.vercel.app/
+- **Portfólio:** https://lipdev.vercel.app/
 
-## Visao do projeto
+> Este repositório é uma demonstração de produto. Cursos, conteúdo e progresso são fictícios e não representam uma operação educacional ativa.
 
-Projeto pensado para infoprodutores, escolas livres e educadores que precisam validar uma plataforma de cursos com visual profissional.
+## Visão geral
 
-## Demo
+O projeto permite avaliar um fluxo completo no navegador:
 
-- Aplicacao online: https://plataforma-de-cursos-online-tau.vercel.app/
-- Portfolio principal: https://lipdev.vercel.app/
+- primeira dobra com posicionamento e CTAs claros;
+- curso demonstrativo com três aulas;
+- navegação entre aulas;
+- marcação de conclusão;
+- painel do aluno com estado vazio, andamento e curso concluído;
+- progresso salvo em `localStorage`;
+- interface responsiva e navegável por teclado.
 
-## Destaques
+## Screenshots
 
-- Home comercial com chamada clara para conversao
-- Catalogo de cursos com estrutura por categorias
-- Area visual para apresentacao de aulas e beneficios
-- Interface responsiva para mobile, tablet e desktop
-- Base pronta para evoluir para login, progresso do aluno e pagamentos
+### Vitrine
 
-## Stack
+![Vitrine da SkillFlow](docs/screenshots/cursos-home-desktop.png)
 
-- React
+### Painel do aluno
+
+![Painel do aluno com progresso](docs/screenshots/cursos-desktop.png)
+
+### Estado concluído
+
+![Curso demonstrativo concluído](docs/screenshots/cursos-concluido.png)
+
+## Tecnologias
+
+- React 18
 - TypeScript
-- Vite
-- Tailwind CSS
+- Vite 6
+- Tailwind CSS 4
+- Motion
+- Playwright
+- ESLint
 
-## Como rodar localmente
+## Executar localmente
+
+Requisitos: Node.js 20+ e npm.
 
 ```bash
-npm install
+git clone https://github.com/LipDev-sudo/Plataforma-de-cursos-online.git
+cd Plataforma-de-cursos-online
+npm ci
 npm run dev
 ```
 
-Para gerar uma build de producao:
+A aplicação não exige arquivo `.env` ou serviços externos.
+
+## Verificações
 
 ```bash
+npm run lint
+npm run typecheck
+npm test
 npm run build
-npm run preview
 ```
 
-## Estrutura de evolucao
+Os testes Playwright percorrem a demonstração em 1440×900 e 390×844, verificando progresso local, conclusão, links vazios, foco inicial e overflow horizontal.
 
-Este projeto pode evoluir com:
+## Persistência
 
-- Integracao com API real
-- Painel administrativo
-- Autenticacao de usuarios
-- Checkout ou integracao com WhatsApp
-- Banco de dados para produtos, pedidos e clientes
+O progresso fica apenas no navegador, na chave `skillflow:demo-progress:v1`. O painel permite reiniciar a demonstração. Não há autenticação, banco de dados, upload de vídeos, emissão de certificados ou integração de pagamentos nesta versão.
+
+## Estrutura principal
+
+```text
+src/app/
+  components/       # vitrine, painel e aula
+  data/              # conteúdo demonstrativo tipado
+  hooks/             # persistência do progresso local
+tests/e2e/           # jornada automatizada desktop e mobile
+docs/screenshots/    # capturas reais da aplicação
+```
 
 ## Autor
 
-Desenvolvido por **Hamilton Felipe Soares da Silva** - LipDev.BR.
+Desenvolvido por **Hamilton Felipe Soares da Silva**.
 
-- Portfolio: https://lipdev.vercel.app/
 - GitHub: https://github.com/LipDev-sudo
 - LinkedIn: https://www.linkedin.com/in/hamilton-felipe-875054383/
+- Portfólio: https://lipdev.vercel.app/
 
-## Licenca
+## Licença
 
-Este projeto esta sob a licenca MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+[MIT](LICENSE)
