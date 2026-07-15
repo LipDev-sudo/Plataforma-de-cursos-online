@@ -17,9 +17,6 @@ for (const size of sizes) {
     await expect(page).toHaveTitle("SkillFlow | Plataforma de Cursos Demo");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
     await expect(page.locator('a[href="#"]')).toHaveCount(0);
-    await page.waitForTimeout(800);
-    await page.screenshot({ path: `docs/screenshots/cursos-home-${size.name}.png`, fullPage: false });
-
     await page.keyboard.press("Tab");
     await expect(page.getByRole("link", { name: "Pular para o conteúdo" })).toBeFocused();
 
@@ -35,8 +32,6 @@ for (const size of sizes) {
     await expect(page.getByText("1 de 3 aulas")).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 
-    await page.screenshot({ path: `docs/screenshots/cursos-${size.name}.png`, fullPage: true });
-
     await page.getByText("Estilos responsivos com CSS", { exact: true }).click();
     await page.getByRole("button", { name: "Marcar como concluída" }).click();
     await page.getByRole("button", { name: "Área do aluno" }).click();
@@ -44,9 +39,6 @@ for (const size of sizes) {
     await page.getByRole("button", { name: "Marcar como concluída" }).click();
     await page.getByRole("button", { name: "Área do aluno" }).click();
     await expect(page.getByRole("heading", { name: "Curso concluído" })).toBeVisible();
-    if (size.name === "desktop") {
-      await page.screenshot({ path: "docs/screenshots/cursos-concluido.png", fullPage: true });
-    }
     expect(errors).toEqual([]);
   });
 }
