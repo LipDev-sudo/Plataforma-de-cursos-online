@@ -76,4 +76,3 @@ export function StudentDashboard({ completedLessonIds, onBack, onOpenLesson, onR
     </main>
   );
 }
-

@@ -48,4 +48,3 @@ export const demoCourse = {
     },
   ] satisfies DemoLesson[],
 };
-
