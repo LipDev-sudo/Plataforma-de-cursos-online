@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://plataforma-de-cursos-online-tau.vercel.app/sitemap.xml
+Sitemap: https://trilhara.vercel.app/sitemap.xml

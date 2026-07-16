@@ -9,7 +9,7 @@ export function Footer() {
           <p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">Demonstração funcional de aprendizagem online desenvolvida por Hamilton Felipe. Não oferece matrículas, certificados ou pagamentos reais.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a href="https://github.com/LipDev-sudo/Plataforma-de-cursos-online" target="_blank" rel="noreferrer" className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-bold text-foreground transition hover:border-primary hover:text-primary"><Github className="h-4 w-4" aria-hidden="true" /> Código</a>
+          <a href="https://github.com/LipDev-sudo/trilhara" target="_blank" rel="noreferrer" className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-bold text-foreground transition hover:border-primary hover:text-primary"><Github className="h-4 w-4" aria-hidden="true" /> Código</a>
           <a href="https://lipdev.vercel.app/" target="_blank" rel="noreferrer" className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:bg-[#214a40]">Portfólio <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 Trilhara é uma demonstração funcional de aprendizagem online para escolas digitais, instrutores independentes e empresas que oferecem treinamentos. O produto organiza conteúdos em um percurso claro, mostra a próxima etapa e mantém o progresso no navegador.
 
-- **Demonstração publicada:** https://plataforma-de-cursos-online-tau.vercel.app/
+- **Demonstração publicada:** https://trilhara.vercel.app/
 - **Portfólio:** https://lipdev.vercel.app/
 
 > Este repositório apresenta uma demonstração de produto. Curso, instrutora e progresso são fictícios e não representam uma operação educacional ativa.
@@ -51,8 +51,8 @@ O fluxo demonstra uma experiência educacional completa e objetiva:
 Requisitos: Node.js 20+ e npm.
 
 ```bash
-git clone https://github.com/LipDev-sudo/Plataforma-de-cursos-online.git
-cd Plataforma-de-cursos-online
+git clone https://github.com/LipDev-sudo/trilhara.git
+cd trilhara
 npm ci
 npm run dev
 ```

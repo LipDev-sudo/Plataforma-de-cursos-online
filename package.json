@@ -1,5 +1,5 @@
 {
-  "name": "plataforma-de-cursos-online",
+  "name": "trilhara",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -37,13 +37,13 @@
   "description": "Protótipo interativo de plataforma LMS com aula demonstrativa, painel do aluno e progresso local.",
   "author": "Hamilton Felipe Soares da Silva",
   "license": "MIT",
-  "homepage": "https://plataforma-de-cursos-online-tau.vercel.app/",
+  "homepage": "https://trilhara.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LipDev-sudo/Plataforma-de-cursos-online.git"
+    "url": "git+https://github.com/LipDev-sudo/trilhara.git"
   },
   "bugs": {
-    "url": "https://github.com/LipDev-sudo/Plataforma-de-cursos-online/issues"
+    "url": "https://github.com/LipDev-sudo/trilhara/issues"
   },
   "keywords": [
     "courses",
