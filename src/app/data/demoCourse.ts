@@ -10,12 +10,16 @@ export const demoCourse = {
   id: "fundamentos-web",
   title: "Fundamentos de Desenvolvimento Web",
   description:
-    "Uma trilha demonstrativa para conhecer a experiência de estudo, navegação entre aulas e acompanhamento de progresso.",
+    "Um percurso demonstrativo para estudar fundamentos da web em etapas curtas e acompanhar o progresso no próprio navegador.",
   level: "Iniciante",
+  instructor: {
+    name: "Marina Costa",
+    role: "Desenvolvedora front-end e educadora digital",
+  },
   lessons: [
     {
       id: "estrutura-html",
-      title: "Estrutura de uma página HTML",
+      title: "Estrutura semântica com HTML",
       duration: "6 min",
       summary: "Entenda como os elementos semânticos organizam o conteúdo de uma página.",
       content: [
@@ -26,7 +30,7 @@ export const demoCourse = {
     },
     {
       id: "estilos-css",
-      title: "Estilos responsivos com CSS",
+      title: "Interfaces responsivas com CSS",
       duration: "8 min",
       summary: "Veja como layout fluido e media queries adaptam a interface a diferentes telas.",
       content: [
@@ -37,7 +41,7 @@ export const demoCourse = {
     },
     {
       id: "interacao-javascript",
-      title: "Interação com JavaScript",
+      title: "Interações previsíveis com JavaScript",
       duration: "7 min",
       summary: "Conecte eventos da interface ao estado da aplicação de forma previsível.",
       content: [

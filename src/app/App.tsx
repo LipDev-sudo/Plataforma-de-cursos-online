@@ -3,8 +3,7 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { FeaturedCourses } from "./components/FeaturedCourses";
 import { Benefits } from "./components/Benefits";
-import { Categories } from "./components/Categories";
-import { Testimonials } from "./components/Testimonials";
+import { LearningJourney } from "./components/LearningJourney";
 import { Footer } from "./components/Footer";
 import { StudentDashboard } from "./components/StudentDashboard";
 import { LessonView } from "./components/LessonView";
@@ -45,8 +44,7 @@ export default function App() {
         <Hero onStartDemo={() => openLesson()} onOpenStudentArea={openStudentArea} completedLessons={progress.completedLessonIds.length} />
         <FeaturedCourses onStartDemo={() => openLesson()} />
         <Benefits />
-        <Categories />
-        <Testimonials onStartDemo={() => openLesson()} />
+        <LearningJourney onStartDemo={() => openLesson()} />
       </main>
       <Footer />
     </div>

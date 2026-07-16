@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const STORAGE_KEY = "skillflow:demo-progress:v1";
+const STORAGE_KEY = "trilhara:demo-progress:v1";
 
 function readProgress(): string[] {
   try {
