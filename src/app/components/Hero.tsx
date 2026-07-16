@@ -1,49 +1,72 @@
-import { ArrowRight, BookOpen, CheckCircle2, Play, UserRound } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowRight, Check, ChevronRight, Code2, FileText, UserRound } from "lucide-react";
 import { demoCourse } from "../data/demoCourse";
 
 type HeroProps = {
   completedLessons: number;
+  onOpenLesson: (lessonId: string) => void;
   onOpenStudentArea: () => void;
   onStartDemo: () => void;
 };
 
-export function Hero({ completedLessons, onOpenStudentArea, onStartDemo }: HeroProps) {
+export function Hero({ completedLessons, onOpenLesson, onOpenStudentArea, onStartDemo }: HeroProps) {
   const progress = Math.round((completedLessons / demoCourse.lessons.length) * 100);
 
   return (
-    <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-violet-800 via-indigo-700 to-blue-600 text-white">
-      <div aria-hidden="true" className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
-      <div className="relative mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-20">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">Aprender tem caminho.</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Um percurso claro para estudar, avançar e saber exatamente qual é a próxima etapa.</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-7 py-3.5 font-bold text-violet-700 shadow-xl shadow-violet-950/20 transition hover:-translate-y-0.5 hover:bg-violet-50" onClick={onStartDemo}><Play className="h-5 w-5 fill-current" /> Conhecer o percurso</button>
-            <button className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-7 py-3.5 font-bold text-white transition hover:bg-white/15" onClick={onOpenStudentArea}><UserRound className="h-5 w-5" /> Ver meu progresso</button>
+    <section id="inicio" className="border-b border-border bg-background">
+      <div className="mx-auto grid min-h-[calc(100svh-72px)] max-w-[1440px] items-center gap-12 px-5 py-14 sm:px-8 lg:min-h-[720px] lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-20">
+        <div className="max-w-2xl">
+          <h1 className="text-5xl font-extrabold leading-[1.02] tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl">Aprender tem caminho.</h1>
+          <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground sm:text-xl">Um percurso claro para estudar, avançar e saber exatamente qual é a próxima etapa.</p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <button className="focus-ring inline-flex min-h-13 items-center justify-center gap-2 rounded-xl bg-primary px-7 py-3.5 font-bold text-primary-foreground transition hover:bg-[#214a40]" onClick={onStartDemo}>
+              <ArrowRight className="h-5 w-5" aria-hidden="true" /> Conhecer o percurso
+            </button>
+            <button className="focus-ring inline-flex min-h-13 items-center justify-center gap-2 rounded-xl border border-primary bg-transparent px-7 py-3.5 font-bold text-primary transition hover:bg-muted" onClick={onOpenStudentArea}>
+              <UserRound className="h-5 w-5" aria-hidden="true" /> Ver meu progresso
+            </button>
           </div>
-          <ul className="mt-8 grid gap-3 text-sm text-white/75 sm:grid-cols-3" aria-label="Características da demonstração">
-            {["Sem cadastro", "Progresso local", "Três etapas"].map((item) => <li key={item} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-200" /> {item}</li>)}
-          </ul>
-        </motion.div>
+          <p className="mt-7 text-sm font-medium text-muted-foreground">Demonstração funcional · sem cadastro ou dados pessoais</p>
+        </div>
 
-        <motion.div initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65, delay: 0.12 }} className="relative">
-          <div className="rounded-[28px] border border-white/20 bg-[#11142a]/80 p-4 shadow-2xl shadow-indigo-950/40 backdrop-blur sm:p-6">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600"><BookOpen className="h-5 w-5" /></span><div><p className="text-xs text-white/50">Percurso demonstrativo</p><h2 className="font-bold">{demoCourse.title}</h2><p className="mt-1 text-xs text-white/50">{demoCourse.instructor.name}</p></div></div>
-              <span className="rounded-lg bg-cyan-300/10 px-3 py-1.5 text-xs font-bold text-cyan-200">{progress}%</span>
+        <div className="surface-shadow overflow-hidden rounded-[26px] border border-border bg-card">
+          <div className="flex flex-col gap-5 border-b border-border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+            <div className="flex min-w-0 items-center gap-4">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+                <Code2 className="h-7 w-7" aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-extrabold uppercase tracking-[.12em] text-primary">Percurso</p>
+                <h2 className="mt-1 text-lg font-extrabold tracking-tight text-foreground sm:text-xl">{demoCourse.title}</h2>
+                <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground"><UserRound className="h-4 w-4" aria-hidden="true" /> {demoCourse.instructor.name}</p>
+              </div>
             </div>
-            <div className="mt-5 space-y-3">
-              {demoCourse.lessons.map((lesson, index) => {
-                const complete = index < completedLessons;
-                return <div key={lesson.id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3"><span className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold ${complete ? "bg-emerald-400/15 text-emerald-200" : "bg-white/10 text-white/65"}`}>{complete ? <CheckCircle2 className="h-4 w-4" /> : index + 1}</span><span className="min-w-0 flex-1"><strong className="block truncate text-sm">{lesson.title}</strong><span className="text-xs text-white/45">{lesson.duration}</span></span></div>;
-              })}
+            <div role="progressbar" aria-label="Progresso do percurso" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[6px] border-muted text-sm font-extrabold text-primary">
+              {progress}%
             </div>
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-cyan-300 to-blue-400 transition-[width] duration-500" style={{ width: `${progress}%` }} /></div>
-            <button className="focus-ring mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-blue-500 px-4 py-3 font-bold text-white hover:from-violet-500 hover:to-blue-400" onClick={onOpenStudentArea}>{completedLessons ? "Continuar aprendendo" : "Ver meu progresso"} <ArrowRight className="h-4 w-4" /></button>
           </div>
-          <div aria-hidden="true" className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-cyan-300/20 blur-3xl" />
-        </motion.div>
+
+          <ol className="relative space-y-3 p-5 sm:p-7" aria-label="Etapas do percurso">
+            <span aria-hidden="true" className="absolute bottom-12 left-[2.45rem] top-12 w-0.5 bg-primary sm:left-[3.2rem]" />
+            {demoCourse.lessons.map((lesson, index) => {
+              const complete = index < completedLessons;
+              return (
+                <li key={lesson.id} className="relative flex items-center gap-4">
+                  <span className={`z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-4 border-card text-sm font-extrabold ${complete ? "bg-success text-white" : "bg-secondary text-secondary-foreground"}`}>
+                    {complete ? <Check className="h-4 w-4" aria-label="Concluída" /> : index + 1}
+                  </span>
+                  <button onClick={() => onOpenLesson(lesson.id)} className="focus-ring group flex min-h-20 min-w-0 flex-1 items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 text-left transition hover:border-primary/40 hover:bg-muted/60">
+                    <FileText className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                    <span className="min-w-0 flex-1">
+                      <strong className="block text-sm leading-5 text-foreground sm:text-base">{lesson.title}</strong>
+                      <span className="mt-1 block text-xs text-muted-foreground">{lesson.duration}</span>
+                    </span>
+                    <ChevronRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-0.5" aria-hidden="true" />
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

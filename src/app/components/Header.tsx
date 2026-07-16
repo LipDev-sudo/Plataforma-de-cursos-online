@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { GraduationCap, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { Menu, UserRound, Waypoints, X } from "lucide-react";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
@@ -11,42 +10,55 @@ const navLinks = [
 
 export function Header({ onOpenStudentArea }: { onOpenStudentArea: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!mobileOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileOpen]);
 
   return (
-    <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${scrolled ? "border-violet-100 bg-white/95 shadow-lg shadow-violet-950/5 backdrop-blur-xl" : "border-transparent bg-white"}`}>
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#inicio" className="focus-ring flex items-center gap-2.5 rounded-xl" aria-label="Trilhara - início">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-700 to-blue-600 shadow-lg shadow-violet-700/20"><GraduationCap className="h-5 w-5 text-white" /></span>
-          <span className="text-xl font-bold tracking-tight text-slate-900">Trilhara</span>
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-20 lg:px-12">
+        <a href="#inicio" className="focus-ring flex items-center gap-2.5 rounded-lg" aria-label="Trilhara - início">
+          <Waypoints className="h-8 w-8 text-primary" strokeWidth={2.25} aria-hidden="true" />
+          <span className="text-xl font-extrabold tracking-[-0.035em] text-foreground sm:text-2xl">Trilhara</span>
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Navegação principal">
-          {navLinks.map((link) => <a key={link.href} href={link.href} className="focus-ring rounded-lg px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-violet-50 hover:text-violet-700">{link.label}</a>)}
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} className="focus-ring rounded-lg px-4 py-2 text-sm font-semibold text-muted-foreground transition hover:bg-muted hover:text-primary">
+              {link.label}
+            </a>
+          ))}
         </nav>
 
-        <div className="hidden md:block"><button className="focus-ring min-h-11 rounded-xl bg-gradient-to-r from-violet-700 to-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-violet-700/20 transition hover:-translate-y-0.5 hover:shadow-xl" onClick={onOpenStudentArea}>Meu progresso</button></div>
+        <button className="focus-ring hidden min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-[#214a40] md:inline-flex" onClick={onOpenStudentArea}>
+          <UserRound className="h-4 w-4" aria-hidden="true" /> Meu progresso
+        </button>
 
-        <button className="focus-ring rounded-xl p-2 text-slate-900 hover:bg-violet-50 md:hidden" onClick={() => setMobileOpen((open) => !open)} aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}>{mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}</button>
+        <button className="focus-ring inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary text-primary transition hover:bg-muted md:hidden" onClick={() => setMobileOpen((open) => !open)} aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}>
+          {mobileOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+        </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav id="mobile-navigation" aria-label="Navegação mobile" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden border-t border-violet-100 bg-white px-4 pb-4 md:hidden">
-            <div className="space-y-1 pt-3">
-              {navLinks.map((link) => <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="focus-ring block rounded-xl px-4 py-3 font-medium text-slate-600 hover:bg-violet-50 hover:text-violet-700">{link.label}</a>)}
-              <button className="focus-ring mt-2 min-h-11 w-full rounded-xl bg-violet-700 px-5 py-3 font-bold text-white" onClick={() => { setMobileOpen(false); onOpenStudentArea(); }}>Meu progresso</button>
-            </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+      {mobileOpen && (
+        <nav id="mobile-navigation" aria-label="Navegação mobile" className="border-t border-border bg-background px-5 pb-5 md:hidden">
+          <div className="space-y-1 pt-3">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="focus-ring block min-h-12 rounded-xl px-4 py-3 font-semibold text-muted-foreground hover:bg-muted hover:text-primary">
+                {link.label}
+              </a>
+            ))}
+            <button className="focus-ring mt-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 font-bold text-primary-foreground" onClick={() => { setMobileOpen(false); onOpenStudentArea(); }}>
+              <UserRound className="h-4 w-4" aria-hidden="true" /> Meu progresso
+            </button>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

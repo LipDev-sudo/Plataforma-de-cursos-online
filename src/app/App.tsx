@@ -41,7 +41,7 @@ export default function App() {
       <a href="#main-content" className="skip-link">Pular para o conteúdo</a>
       <Header onOpenStudentArea={openStudentArea} />
       <main id="main-content">
-        <Hero onStartDemo={() => openLesson()} onOpenStudentArea={openStudentArea} completedLessons={progress.completedLessonIds.length} />
+        <Hero onStartDemo={() => openLesson()} onOpenLesson={openLesson} onOpenStudentArea={openStudentArea} completedLessons={progress.completedLessonIds.length} />
         <FeaturedCourses onStartDemo={() => openLesson()} />
         <Benefits />
         <LearningJourney onStartDemo={() => openLesson()} />

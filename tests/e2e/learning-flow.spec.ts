@@ -22,11 +22,21 @@ for (const size of sizes) {
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "Trilhara | Aprender tem caminho");
     await expect(page.locator('link[rel="icon"]')).toHaveAttribute("href", "/favicon.svg");
     await expect(page.getByText("SkillFlow", { exact: false })).toHaveCount(0);
+    await expect(page.getByRole("list", { name: "Etapas do percurso" })).toBeVisible();
+    await expect(page.getByRole("progressbar", { name: "Progresso do percurso" })).toHaveAttribute("aria-valuenow", "0");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
     await expect(page.locator('a[href="#"]')).toHaveCount(0);
 
     await page.keyboard.press("Tab");
     await expect(page.getByRole("link", { name: "Pular para o conteúdo" })).toBeFocused();
+
+    if (size.name === "mobile") {
+      const menuButton = page.getByRole("button", { name: "Abrir menu" });
+      await menuButton.click();
+      await expect(page.getByRole("navigation", { name: "Navegação mobile" })).toBeVisible();
+      await page.keyboard.press("Escape");
+      await expect(page.getByRole("button", { name: "Abrir menu" })).toHaveAttribute("aria-expanded", "false");
+    }
 
     await page.locator("#inicio").getByRole("button", { name: "Conhecer o percurso" }).click();
     await expect(page.getByRole("heading", { name: "Estrutura semântica com HTML" })).toBeVisible();
