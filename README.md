@@ -1,37 +1,40 @@
-# SkillFlow - Plataforma de Cursos Demo
+# Trilhara — Aprender tem caminho
 
-Protótipo interativo de uma plataforma LMS, criado para demonstrar uma jornada de estudo sem depender de cadastro, pagamentos ou credenciais externas.
+Trilhara é uma demonstração funcional de aprendizagem online para escolas digitais, instrutores independentes e empresas que oferecem treinamentos. O produto organiza conteúdos em um percurso claro, mostra a próxima etapa e mantém o progresso no navegador.
 
-- **Aplicação publicada:** https://plataforma-de-cursos-online-tau.vercel.app/
+- **Demonstração publicada:** https://plataforma-de-cursos-online-tau.vercel.app/
 - **Portfólio:** https://lipdev.vercel.app/
 
-> Este repositório é uma demonstração de produto. Cursos, conteúdo e progresso são fictícios e não representam uma operação educacional ativa.
+> Este repositório apresenta uma demonstração de produto. Curso, instrutora e progresso são fictícios e não representam uma operação educacional ativa.
 
-## Visão geral
+## Proposta
 
-O projeto permite avaliar um fluxo completo no navegador:
+O fluxo demonstra uma experiência educacional completa e objetiva:
 
-- primeira dobra com posicionamento e CTAs claros;
-- curso demonstrativo com três aulas;
-- navegação entre aulas;
-- marcação de conclusão;
-- painel do aluno com estado vazio, andamento e curso concluído;
-- progresso salvo em `localStorage`;
-- interface responsiva e navegável por teclado.
+- percurso **Fundamentos de Desenvolvimento Web** com três etapas coerentes;
+- aula com conteúdo, prática sugerida e navegação entre etapas;
+- marcação individual de conclusão;
+- painel com próxima etapa e progresso total;
+- persistência local sem cadastro, credenciais ou serviços externos;
+- interface responsiva, contraste AA, foco visível e navegação por teclado.
 
 ## Screenshots
 
-### Vitrine
+### Home — desktop
 
-![Vitrine da SkillFlow](docs/screenshots/cursos-home-desktop.png)
+![Home da Trilhara em desktop](docs/screenshots/trilhara-home-desktop.png)
 
-### Painel do aluno
+### Painel de progresso
 
-![Painel do aluno com progresso](docs/screenshots/cursos-desktop.png)
+![Painel de progresso da Trilhara](docs/screenshots/trilhara-progress-desktop.png)
 
-### Estado concluído
+### Aula
 
-![Curso demonstrativo concluído](docs/screenshots/cursos-concluido.png)
+![Aula da Trilhara em desktop](docs/screenshots/trilhara-lesson-desktop.png)
+
+### Home — mobile
+
+![Home da Trilhara em mobile](docs/screenshots/trilhara-home-mobile.png)
 
 ## Tecnologias
 
@@ -39,7 +42,7 @@ O projeto permite avaliar um fluxo completo no navegador:
 - TypeScript
 - Vite 6
 - Tailwind CSS 4
-- Motion
+- Lucide React
 - Playwright
 - ESLint
 
@@ -54,28 +57,36 @@ npm ci
 npm run dev
 ```
 
-A aplicação não exige arquivo `.env` ou serviços externos.
+A aplicação não exige arquivo `.env`, autenticação, banco de dados ou integração externa.
 
-## Verificações
+## Validações
 
 ```bash
-npm run lint
 npm run typecheck
+npm run lint
 npm test
 npm run build
+npm audit
 ```
 
-Os testes Playwright percorrem a demonstração em 1440×900 e 390×844, verificando progresso local, conclusão, links vazios, foco inicial e overflow horizontal.
+Os testes Playwright percorrem a demonstração em 1440×900 e 390×844. Eles verificam marca e metadados, navegação, progresso persistente, teclado, menu mobile, foco inicial, links inválidos e overflow horizontal.
 
-## Persistência
+## Persistência e limitações
 
-O progresso fica apenas no navegador, na chave `skillflow:demo-progress:v1`. O painel permite reiniciar a demonstração. Não há autenticação, banco de dados, upload de vídeos, emissão de certificados ou integração de pagamentos nesta versão.
+O progresso fica somente no navegador, na chave `trilhara:demo-progress:v1`, e pode ser reiniciado pelo painel. Esta demonstração não inclui:
+
+- autenticação ou sincronização entre dispositivos;
+- pagamentos;
+- upload ou streaming de vídeo;
+- certificados;
+- painel administrativo;
+- outros cursos além do percurso demonstrativo.
 
 ## Estrutura principal
 
 ```text
 src/app/
-  components/       # vitrine, painel e aula
+  components/       # vitrine, painel, aula e percurso
   data/              # conteúdo demonstrativo tipado
   hooks/             # persistência do progresso local
 tests/e2e/           # jornada automatizada desktop e mobile
