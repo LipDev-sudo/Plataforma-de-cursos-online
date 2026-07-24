@@ -6,12 +6,12 @@ export default defineConfig({
   retries: 0,
   reporter: "line",
   use: {
-    baseURL: "http://127.0.0.1:4175",
+    baseURL: "http://127.0.0.1:4182",
     trace: "retain-on-failure",
   },
   webServer: {
-    command: "npm run dev -- --host 127.0.0.1 --port 4175",
-    url: "http://127.0.0.1:4175",
+    command: "npm run dev -- --host 127.0.0.1 --port 4182",
+    url: "http://127.0.0.1:4182",
     reuseExistingServer: false,
   },
 });
